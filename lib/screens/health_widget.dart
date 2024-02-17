@@ -69,7 +69,7 @@ class _HealthPageState extends State<HealthPage> with AutomaticKeepAliveClientMi
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                        hintText: 'Enter health modification',
+                        hintText: 'damage/health',
                       ),
                     ),
                   ),
@@ -82,7 +82,7 @@ class _HealthPageState extends State<HealthPage> with AutomaticKeepAliveClientMi
                     child: const Text('-')
                   ),
                 ].map((widget) => Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(8),
               child: widget,
               )).toList(),
               ),
