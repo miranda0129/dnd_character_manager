@@ -98,34 +98,40 @@ class _MagicalItemsPageState extends State<MagicalItemsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text(
-            'Magical Items Page',
-          ),
-          SizedBox(
-            width: 400,
-            child: TextField(
-              controller: searchField,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Search for magical item',
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Magical Items Page'),
+        backgroundColor:Color.fromARGB(77, 14, 199, 51),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'Magical Items Page',
+            ),
+            SizedBox(
+              width: 400,
+              child: TextField(
+                controller: searchField,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Search for magical item',
+                ),
               ),
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              fetchMagicItem();
-            },
-            child: const Text('Seach')
-          ),
-          getMagicItemWidget(),
-        ].map((widget) => Padding(
-          padding: const EdgeInsets.all(8),
-          child: widget,
-          )).toList(),
+            ElevatedButton(
+              onPressed: () {
+                fetchMagicItem();
+              },
+              child: const Text('Seach')
+            ),
+            getMagicItemWidget(),
+          ].map((widget) => Padding(
+            padding: const EdgeInsets.all(8),
+            child: widget,
+            )).toList(),
+        ),
       ),
     );
   }
