@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../app_drawer.dart';
 
 class MagicalItemsPage extends StatefulWidget {
   const MagicalItemsPage({super.key});
@@ -61,29 +62,6 @@ class _MagicalItemsPageState extends State<MagicalItemsPage> {
   }
 
   Widget getMagicItemWidget() {
-    // if (errorMessage.isNotEmpty) {
-    //   return Column(
-    //     children: [
-    //       Text(errorMessage),
-    //     ],
-    //   );
-    // } else if (itemList.isNotEmpty) {
-    //   return Column(
-    //     children: [
-    //       ListView.builder(
-    //       padding: const EdgeInsets.all(8),
-    //       itemCount: itemList.length,
-    //       itemBuilder: (BuildContext context, int index) {
-    //         return Container(
-    //           height: 50,
-    //           color: Colors.amber,
-    //           child: Center(child: Text('Entry ${itemList[index].toString()}')),
-    //         );
-    //           }
-    //         ),
-    //     ],
-    //   );
-    // } else {
       return Column(
         children: [
           Text(name),
@@ -93,13 +71,14 @@ class _MagicalItemsPageState extends State<MagicalItemsPage> {
           ),
         ],
       );
-    //}
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(), 
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Magical Items Page'),
         backgroundColor:Color.fromARGB(77, 14, 199, 51),
       ),

@@ -1,9 +1,15 @@
-import 'package:dnd_character_manager/screens/magical_items_widget.dart';
-import 'package:dnd_character_manager/screens/spellbook_widget.dart';
+import 'package:dnd_character_manager/app_drawer.dart';
+import 'package:dnd_character_manager/screens/spellbook/spellbook_widget.dart';
 import 'package:flutter/material.dart';
-import './screens/health_widget.dart';
+import 'package:firebase_core/firebase_core.dart';
+import '../firebase_options.dart';
 
-void main() {
+
+void main() async {
+    await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -14,8 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'dnd',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromRGBO(255, 6, 131, 1)),
+        //useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Character Health Page'),
     );
@@ -38,35 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Scaffold(
-          drawer: Drawer(
-            child: ListView(
-              children: <Widget>[
-                ListTile(title: Text('Inventory')),
-                ListTile(
-                  title: Text('Magic Item Lookup'),
-                  onTap: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => MagicalItemsPage()));
-                  },
-                ),
-              ]
-            )
-          ),
-          appBar: AppBar(
-            backgroundColor: Color.fromARGB(77, 14, 199, 51),
-            title: const Text('Lilli Nim Warryn'),
-          ),
           body: 
             SpellbookPage(),
-
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => HealthPage())
-              );
-            },
-            backgroundColor: Color.fromARGB(77, 14, 199, 51),
-            child: const Icon(Icons.favorite),
-          ),
         );
       }
     );

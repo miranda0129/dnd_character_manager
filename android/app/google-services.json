@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "790751026943",
+    "project_id": "dnd-character-manager-99389",
+    "storage_bucket": "dnd-character-manager-99389.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790751026943:android:7ab5b4ee3fe3449437f6ca",
+        "android_client_info": {
+          "package_name": "com.example.dnd_character_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPWrWuHrvqOBuo2xwXTh0E2jhEg2_k9Bg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
