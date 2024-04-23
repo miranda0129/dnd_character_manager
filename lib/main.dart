@@ -1,16 +1,22 @@
-import 'package:dnd_character_manager/app_drawer.dart';
+import 'package:dnd_character_manager/models/character.dart';
+import 'package:dnd_character_manager/models/spell_slots.dart';
 import 'package:dnd_character_manager/screens/spellbook/spellbook_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import '../firebase_options.dart';
 
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (BuildContext context) => Character(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -45,7 +51,10 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (context, constraints) {
         return Scaffold(
           body: 
-            SpellbookPage(),
+            ChangeNotifierProvider(
+              create: (BuildContext context) => SpellSlots(),
+              child: SpellbookPage()
+            ),
         );
       }
     );

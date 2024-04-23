@@ -47,7 +47,6 @@ class _MagicalItemsPageState extends State<MagicalItemsPage> {
           errorMessage = 'Error getting item';
         });
       }
-
   }
 
   @override

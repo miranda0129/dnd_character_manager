@@ -48,7 +48,7 @@ class _HealthPageState extends State<HealthPage> {
               'Your health is: ',
             ),
             Text(
-              '${characterModel.currentHealth}',
+              '${characterModel.getCurrentHealth()}',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             Row(

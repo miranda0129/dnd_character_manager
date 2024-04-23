@@ -20,9 +20,8 @@ class _CurrentSpellsState extends State<CurrentSpells> {
 
   List spellList = ['fire bolt'];
   Map<String, Spell> realSpellList = HashMap();
-  List spellSlots = [99, 2];
   int spellSaveDC = 14;
-  int spellAttackBonus = 6;
+  int spellAttackBonus = 8;
   String spellcastingAbility = 'Rizz';
 
   @override
@@ -49,16 +48,6 @@ class _CurrentSpellsState extends State<CurrentSpells> {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Text('Spellslots: '),
-                  Text('\tLevel 1: ${spellSlots[1].toString()}')
-                ],
-              ),
-            ),
-
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -68,9 +57,6 @@ class _CurrentSpellsState extends State<CurrentSpells> {
                       realSpellList.entries.map( (spell) => ListTile(
                         contentPadding: const EdgeInsets.all(16),
                         title: Text(spell.value.name), 
-                        subtitle: Text('Level: ${
-                          spell.value.level == 0 ? 'cantrip' : spell.value.level
-                        }'),
                         onTap: () {
                           getSpellDesc(context, spell.value);
                         },
@@ -90,20 +76,6 @@ class _CurrentSpellsState extends State<CurrentSpells> {
     super.initState();
   }
 
-  void castSpell(int level) {
-    if (level > 0 && level < spellSlots.length) {
-      if (spellSlots[level] == 0) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Not enough magic juice, sry :('))
-        );
-      } else {
-        setState(() {
-          spellSlots[level] = spellSlots[level] - 1;
-        });
-      }
-    }
-  }
-
 
   void getSpellDesc(context, Spell spell) {
     showDialog(
@@ -113,13 +85,6 @@ class _CurrentSpellsState extends State<CurrentSpells> {
           title: Text(spell.name),
           content: Text(spell.description),
           actions: [
-            TextButton(
-              onPressed: () {
-                castSpell(spell.level);
-                Navigator.of(context).pop();
-              }, 
-              child: Text('Cast')
-            ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
@@ -137,8 +102,6 @@ class _CurrentSpellsState extends State<CurrentSpells> {
     for (String spellIndex in spellIndexList) {
       final response = await http
         .get(Uri.parse('https://www.dnd5eapi.co/api/spells/$spellIndex'));
-
-      final responseJson = jsonDecode(response.body);
 
       final spellMap = jsonDecode(response.body) as Map<String, dynamic>;
       final classSpell = Spell.fromJson(spellMap);

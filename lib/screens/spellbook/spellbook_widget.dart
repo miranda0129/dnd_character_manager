@@ -1,3 +1,5 @@
+import 'package:dnd_character_manager/models/spell_slots.dart';
+import 'package:dnd_character_manager/screens/spellbook/cast_spells.dart';
 import 'package:dnd_character_manager/screens/spellbook/search_spells.dart';
 import 'package:flutter/material.dart';
 import '../../app_drawer.dart';
@@ -13,7 +15,7 @@ class SpellbookPage extends StatefulWidget {
 
 class _SpellbookPageState extends State<SpellbookPage> {
   int currentPageIndex = 0;
-  final List<Widget> _children = [CurrentSpells(), CurrentSpells(), SearchSpells()];
+  final List<Widget> _children = [CurrentSpells(), SpellCasting(), SearchSpells()];
 
 
   @override
@@ -23,6 +25,7 @@ class _SpellbookPageState extends State<SpellbookPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Spellbook'),
+        backgroundColor:Color.fromARGB(77, 14, 199, 51),
       ),
       body: _children[currentPageIndex],
       bottomNavigationBar: NavigationBar(
