@@ -22,8 +22,9 @@ class _HealthPageState extends State<HealthPage> {
   }
 
   int _parseNumInput() {
+    int num = int.parse(healthTextField.text);
     healthTextField.clear();
-    return int.parse(healthTextField.text);
+    return num;
   }
 
 
@@ -55,11 +56,13 @@ class _HealthPageState extends State<HealthPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {
-                    characterModel.increaseHealth(_parseNumInput());
-                  }, 
-                  child: const Text('+')
+                  onPressed:()
+                  {  
+                    characterModel.decreaseHealth(_parseNumInput());
+                  },
+                  child: const Text('-')
                 ),
+
                 SizedBox(
                   width: 200,
                   child: TextField(
@@ -72,17 +75,18 @@ class _HealthPageState extends State<HealthPage> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed:()
-                  {  
-                    characterModel.decreaseHealth(_parseNumInput());
-                  },
-                  child: const Text('-')
+                  onPressed: () {
+                    characterModel.increaseHealth(_parseNumInput());
+                  }, 
+                  child: const Text('+')
                 ),
+                
               ].map((widget) => Padding(
             padding: const EdgeInsets.all(8),
             child: widget,
             )).toList(),
             ),
+            ElevatedButton(onPressed: () => characterModel.restoreHelath(), child: Text('Restore health'))
           ]
         ),
       ),

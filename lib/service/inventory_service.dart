@@ -23,8 +23,11 @@ class InventoryService{
     }
   }
 
-  Future update(Map updatedEntery) async {
-    //inventoryReference.update(Map.of(updatedEntery));
-    print('called inimplended save to db');
+  Future update(String itemName, int newQuantity) async {
+    inventoryReference.update({itemName : newQuantity});
+  }
+
+    Future delete(String itemName) async {
+    inventoryReference.update({ itemName : FieldValue.delete() });
   }
 }

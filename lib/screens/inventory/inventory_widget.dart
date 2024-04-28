@@ -72,9 +72,9 @@ class _InventoryPageState extends State<InventoryPage> {
                   ),
                   onDismissed: (_) {
                     setState(() {
+                      _inventoryService.delete(keys[index]);
                       inventory.remove(keys[index]);
                       keys = inventory.keys.toList();
-                      //remove item from db list
                     });
                   },
                   child: ListTile(
@@ -150,7 +150,7 @@ class _InventoryPageState extends State<InventoryPage> {
                     inventory[addItemName.text] = addItemQuantity.text;
                     keys = inventory.keys.toList();
                   });
-                //update db
+                _inventoryService.update(addItemName.text, int.parse(addItemQuantity.text));
                 Navigator.of(context).pop();
               }, 
               child: Text('Save')
@@ -189,7 +189,7 @@ class _InventoryPageState extends State<InventoryPage> {
                 setState(() {
                     inventory[currentName] = editItemQuantity.text;
                   });
-                _inventoryService.update({currentName : editItemQuantity.text });
+                _inventoryService.update(currentName, int.parse(editItemQuantity.text));
                 Navigator.of(context).pop();
               }, 
               child: Text('Save')

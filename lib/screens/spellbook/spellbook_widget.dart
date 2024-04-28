@@ -2,6 +2,7 @@ import 'package:dnd_character_manager/models/spell_slots.dart';
 import 'package:dnd_character_manager/screens/spellbook/cast_spells.dart';
 import 'package:dnd_character_manager/screens/spellbook/search_spells.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../app_drawer.dart';
 
 import 'current_spells.dart';
@@ -15,7 +16,12 @@ class SpellbookPage extends StatefulWidget {
 
 class _SpellbookPageState extends State<SpellbookPage> {
   int currentPageIndex = 0;
-  final List<Widget> _children = [CurrentSpells(), SpellCasting(), SearchSpells()];
+  final List<Widget> _children = 
+  [CurrentSpells(), 
+  ChangeNotifierProvider(
+    create: (BuildContext context) => SpellSlots(),
+    child: SpellCasting()),
+    SearchSpells()];
 
 
   @override

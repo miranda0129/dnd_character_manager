@@ -1,21 +1,20 @@
+import 'package:dnd_character_manager/service/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Character extends ChangeNotifier {
+  FirestoreService _firestoreService = FirestoreService();
+  late DocumentReference characterReference = _firestoreService.getCharacterReference();
+
+  
   int _currentHealth = 20;
   int _maxHealth = 20;
   
     getHealth() async {
-    //var collection = FirebaseFirestore.instance.collection('characters');
-
-    FirebaseFirestore.instance.collection('characters').doc('LilliNimWarryn').get().then((value) {
-
-      //'value' is the instance of 'DocumentSnapshot'
-      //'value.data()' contains all the data inside a document in the form of 'dictionary'
-      var fields = value.data();
-      print(fields?['health']);
-
-    });
+    DocumentSnapshot ds = await characterReference.get();
+    _currentHealth = ds.get('currentHealth');
+    _maxHealth = ds.get('maxHealth');
+    notifyListeners();
   }
 
   int getCurrentHealth() {
@@ -28,11 +27,19 @@ class Character extends ChangeNotifier {
 
   void increaseHealth(int healthDelta){
     _currentHealth += healthDelta;
+    characterReference.update({'currentHealth' : _currentHealth});
     notifyListeners();
   }
 
   void decreaseHealth(int healthDelta) {
     _currentHealth -= healthDelta;
+    characterReference.update({'currentHealth' : _currentHealth});
+    notifyListeners();
+  }
+
+  void restoreHelath() {
+    _currentHealth = _maxHealth;
+    characterReference.update({'currentHealth' : _currentHealth});
     notifyListeners();
   }
 
