@@ -130,13 +130,13 @@ class _InventoryPageState extends State<InventoryPage> {
             children: [
               TextField(
                 controller: addItemName,
-                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'Name'
                 ),
               ),
               TextField(
                 controller: addItemQuantity,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'Quantity'
                 ),
