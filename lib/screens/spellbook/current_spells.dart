@@ -16,7 +16,7 @@ class CurrentSpells extends StatefulWidget {
 class _CurrentSpellsState extends State<CurrentSpells> {
     final searchField = TextEditingController();
   List spellIndexList = ['minor-illusion', 'fire-bolt', 'shocking-grasp', 'ray-of-frost', 'mending',
-  'magic-missile', 'mage-armor', 'feather-fall', 'color-spray'];
+  'magic-missile', 'mage-armor', 'feather-fall', 'color-spray', 'alter-self', 'detect-thoughts'];
 
   List spellList = ['fire bolt'];
   Map<String, Spell> realSpellList = HashMap();

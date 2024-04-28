@@ -11,12 +11,10 @@ class SpellCasting extends StatefulWidget {
 
 class _SpellCastingState extends State<SpellCasting> {
 
-  void _castSpell(int level) {
-    Provider.of<SpellSlots>(context, listen: false).castSpell(level);
-  }
 
   @override
   Widget build(BuildContext context) {
+    SpellSlots slotsModel = context.watch<SpellSlots>();
     var _spellSlots = context.watch<SpellSlots>().currentSlots;
 
     return Center(
@@ -40,13 +38,17 @@ class _SpellCastingState extends State<SpellCasting> {
                         SnackBar(content: Text('Not enough magic juice, sry :('))
                       );
                     } else {
-                      _castSpell(index);
+                      slotsModel.castSpell(index);
                     }
                   },      
                 );
               },
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: FloatingActionButton(onPressed: () => slotsModel.restoreSlots(), child: Text('Restore')),
+          )
         ],
       ),
     );
